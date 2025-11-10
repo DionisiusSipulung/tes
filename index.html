@@ -18,6 +18,30 @@
       overflow-x: hidden;
     }
 
+    /* 🔹 HEADER MENGAMBANG */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(30, 60, 114, 0.9);
+      backdrop-filter: blur(6px);
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 1.4em;
+      font-weight: 700;
+      letter-spacing: 1px;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: background 0.4s ease;
+    }
+
+    /* Efek saat discroll (header sedikit transparan) */
+    .header.scrolled {
+      background: rgba(30, 60, 114, 0.7);
+    }
+
     /* Bagian Hero (Halaman Awal) */
     .hero {
       height: 100vh;
@@ -26,7 +50,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 20px;
+      padding: 100px 20px 20px; /* dikurangi karena ada header */
     }
     .hero h1 {
       font-size: 3em;
@@ -94,10 +118,14 @@
   </style>
 </head>
 <body>
+
+  <!-- 🔹 Header Mengambang -->
+  <div class="header" id="header">🌐 TWNAS XXXV 2025</div>
+
   <!-- Bagian awal -->
   <div class="hero">
     <h1>TWNAS XXXV 2025</h1>
-    <p>Website ini berisi informasi dan panduan seputar TWNAS XXX</p>
+    <p>Website ini berisi informasi dan panduan seputar TWNAS XXXV.</p>
   </div>
 
   <!-- Bagian konten 1 -->
@@ -113,27 +141,28 @@
   </section>
 
   <!-- Bagian konten 3 -->
-<section>
-  <h2>📞 Contact Person</h2>
-  <p>Silahkan hubungi nomor dibawah ini jika butuh bantuan!</p>
+  <section>
+    <h2>📞 Contact Person</h2>
+    <p>Silahkan hubungi nomor dibawah ini jika butuh bantuan!</p>
 
-  <div class="buttons">
-    <a href="https://wa.me/6282251520792?text=Halo%20saya%20ingin%20bertanya%20tentang%20akomodasi" class="btn" target="_blank">
-      Akomodasi
-    </a>
-    <a href="https://wa.me/6282251520792?text=Halo%20saya%20ingin%20bertanya%20tentang%20transportasi" class="btn" target="_blank">
-      Transportasi
-    </a>
-    <a href="https://wa.me/6282251520792?text=Halo%20saya%20ingin%20bertanya%20tentang%20acara" class="btn" target="_blank">
-      Acara
-    </a>
-  </div>
-</section>
-
+    <div class="buttons">
+      <a href="https://wa.me/6282251520792?text=Halo%20saya%20ingin%20bertanya%20tentang%20akomodasi" class="btn" target="_blank">
+        Akomodasi
+      </a>
+      <a href="https://wa.me/6282251520792?text=Halo%20saya%20ingin%20bertanya%20tentang%20transportasi" class="btn" target="_blank">
+        Transportasi
+      </a>
+      <a href="https://wa.me/6282251520792?text=Halo%20saya%20ingin%20bertanya%20tentang%20acara" class="btn" target="_blank">
+        Acara
+      </a>
+    </div>
+  </section>
 
   <script>
     // Animasi muncul saat scroll
     const sections = document.querySelectorAll("section");
+    const header = document.getElementById("header");
+
     const revealOnScroll = () => {
       const triggerBottom = window.innerHeight * 0.85;
       sections.forEach(sec => {
@@ -142,10 +171,17 @@
           sec.classList.add("visible");
         }
       });
+
+      // Efek header berubah saat discroll
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
     };
+
     window.addEventListener("scroll", revealOnScroll);
     revealOnScroll();
   </script>
 </body>
 </html>
-
