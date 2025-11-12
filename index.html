@@ -4,14 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TWNAS XXXV</title>
+
   <link rel="icon" type="image/png" href="logo.png" />
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      color: #fff;
+      color: #333;
       overflow-x: hidden;
     }
 
@@ -19,134 +26,304 @@
     header {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
+      background: rgba(255, 255, 255, 0);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 18px 60px;
-      background: rgba(255, 255, 255, 0);
-      transition: all 0.4s ease;
       z-index: 1000;
-    }
-    header.scrolled {
-      background: rgba(255,255,255,0.95);
-      color: #111;
-    }
-    header.scrolled a {
-      color: #111;
+      transition: all 0.4s ease;
     }
 
-    /* LOGO */
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      color: #222;
+    }
+
+    header.scrolled nav a,
+    header.scrolled .logo-text h1,
+    header.scrolled .logo-text p {
+      color: #222;
+    }
+
     .logo {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 18px;
     }
+
     .logo img {
       width: 90px;
       height: auto;
-      transition: 0.3s;
-    }
-    header.scrolled .logo img {
-      width: 80px;
-    }
-    .logo-text h1 {
-      font-size: 26px;
-      font-weight: 700;
-      color: inherit;
+      transition: 0.3s ease;
     }
 
-    /* NAVIGATION */
+    header.scrolled .logo img {
+      width: 65px;
+    }
+
+    .logo-text h1 {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: #fff;
+      transition: color 0.4s ease;
+    }
+
+    .logo-text p {
+      font-size: 0.9em;
+      color: #fff;
+      opacity: 0.9;
+      transition: color 0.4s ease;
+    }
+
     nav {
       display: flex;
-      gap: 25px;
+      align-items: center;
+      gap: 35px;
     }
+
     nav a {
       color: white;
       text-decoration: none;
       font-weight: 500;
+      font-size: 0.95em;
       transition: 0.3s;
     }
+
     nav a:hover {
-      color: #f1c40f;
+      color: #ffb185;
     }
 
-    /* HERO (Halaman 1) */
-    section.hero {
-      height: 100vh;
-      background: url('background.png') center/cover fixed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      background-color: rgba(0,0,0,0.5);
-      background-blend-mode: darken;
-    }
-    .hero h1 {
-      font-size: 60px;
-      font-weight: 700;
+    .btn-registrasi {
+      background: linear-gradient(135deg, #ff6b35, #ff934f);
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
     }
 
-    /* ABOUT (Halaman 2) */
-    section.about {
-      height: 100vh;
-      background: white;
-      color: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    .btn-registrasi:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
     }
 
-    /* HALAMAN 3 */
-    section.twnas-info {
-      height: 100vh;
-      background: url('background.png') center/cover fixed;
-      background-color: rgba(0,0,0,0.5);
-      background-blend-mode: darken;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    /* RESPONSIVE MENU */
+    /* HAMBURGER MENU */
     .menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
-      gap: 4px;
+      gap: 5px;
     }
+
     .menu-toggle span {
       width: 28px;
       height: 3px;
       background: white;
       transition: 0.3s;
     }
+
     header.scrolled .menu-toggle span {
-      background: #111;
+      background: #222;
     }
 
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 20px;
+      position: relative;
+      color: white;
+      background: url('background.png') center/cover no-repeat fixed;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .hero h1, .hero p {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      font-weight: 700;
+      margin-bottom: 15px;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    .hero p {
+      max-width: 700px;
+      font-size: 1.2em;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    /* SECTION */
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 20px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about {
+      background: linear-gradient(135deg, #ffffff, #e3f2fd);
+      color: #1e3c72;
+    }
+
+    .twnas-info {
+      background: url('background.png') center/cover no-repeat fixed;
+      position: relative;
+      color: white;
+    }
+
+    .twnas-info::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    .twnas-info h2,
+    .twnas-info p {
+      position: relative;
+      z-index: 1;
+    }
+
+    footer {
+      background: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 25px 10px;
+      font-size: 0.9em;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* POPUP */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s ease;
+      z-index: 9999;
+    }
+
+    .popup.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .popup-content {
+      background: white;
+      border-radius: 15px;
+      padding: 30px 40px;
+      text-align: center;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: scaleIn 0.4s ease;
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .popup-content h2 {
+      color: #1e3c72;
+      margin-bottom: 15px;
+    }
+
+    .popup-content p {
+      color: #333;
+      font-size: 1em;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5em;
+      color: #666;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .popup-close:hover {
+      color: #ff6b35;
+      transform: scale(1.1);
+    }
+
+    /* RESPONSIVE */
     @media (max-width: 768px) {
+      header { padding: 12px 30px; }
+      .logo img { width: 70px; }
+      .hero h1 { font-size: 2em; }
+      .hero p { font-size: 1em; }
+
+      .menu-toggle { display: flex; }
       nav {
         position: absolute;
         top: 70px;
         right: 0;
         width: 100%;
-        background: rgba(0,0,0,0.9);
         flex-direction: column;
-        align-items: center;
-        gap: 20px;
+        background: rgba(0,0,0,0.9);
         padding: 20px 0;
-        transform: translateY(-200%);
+        transform: translateY(-250%);
         transition: transform 0.3s ease;
       }
       nav.active {
         transform: translateY(0);
       }
-      .menu-toggle {
-        display: flex;
+      nav a {
+        color: white !important;
       }
     }
   </style>
@@ -154,46 +331,91 @@
 <body>
   <header id="header">
     <div class="logo">
-      <img src="logo.png" alt="Logo">
-      <div class="logo-text"><h1>TWNAS XXXV</h1></div>
+      <img src="logo.png" alt="Logo TWNAS" />
+      <div class="logo-text">
+        <h1>Temu Wicara Nasional</h1>
+        <p>XXXV FKMTSI 2025</p>
+      </div>
     </div>
+
+    <!-- 🔹 Tombol hamburger -->
     <div class="menu-toggle" id="menu-toggle">
       <span></span><span></span><span></span>
     </div>
-    <nav id="nav">
-      <a href="#hero">Beranda</a>
-      <a href="#about">Tentang</a>
-      <a href="#info">Info</a>
+
+    <nav id="nav-menu">
+      <a href="#">Home</a>
+      <a href="#">Tentang Kami</a>
+      <a href="#">Bob Membantu</a>
+      <a href="#">Wilayah X</a>
+      <button class="btn-registrasi" id="popupBtn">Registrasi</button>
     </nav>
   </header>
 
-  <section class="hero" id="hero">
-    <h1>SELAMAT DATANG DI TWNAS XXXV</h1>
+  <div class="hero">
+    <h1>TWNAS XXXV 2025</h1>
+    <p>Website resmi acara Temu Wicara Nasional FKMTSI ke-35 menginspirasi kolaborasi, inovasi, dan kebersamaan.</p>
+  </div>
+
+  <section class="about">
+    <h2>✨ Tentang Kami</h2>
+    <p>Kami berkomitmen menghadirkan wadah inspiratif bagi mahasiswa teknik sipil seluruh Indonesia.</p>
   </section>
 
-  <section class="about" id="about">
-    <h1>Halaman Tentang</h1>
+  <section class="twnas-info">
+    <h2>📣 Informasi Kegiatan</h2>
+    <p>Segala informasi terbaru mengenai TWNAS XXXV 2025 akan diumumkan di halaman ini. Tetap pantau ya!</p>
   </section>
 
-  <section class="twnas-info" id="info">
-    <h1>Halaman Info - Latar Sama dengan Awal</h1>
-  </section>
+  <footer>© 2025 TWNAS XXXV | FKMTSI Indonesia. All Rights Reserved.</footer>
+
+  <!-- POPUP -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <span class="popup-close" id="closePopup">&times;</span>
+      <h2>Registrasi Belum Dibuka</h2>
+      <p>Tunggu info selanjutnya dari panitia! -D</p>
+    </div>
+  </div>
+
+  <div class="popup" id="autoPopup">
+    <div class="popup-content">
+      <span class="popup-close" id="closeAuto">&times;</span>
+      <h2>Mohon Maaf!</h2>
+      <p>Website ini sedang dalam tahap pengembangan dan belum dapat digunakan. 🎉</p>
+    </div>
+  </div>
 
   <script>
-    const header = document.getElementById('header');
-    const menuToggle = document.getElementById('menu-toggle');
-    const nav = document.getElementById('nav');
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 50);
     });
 
-    menuToggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
+    const popup = document.getElementById("popup");
+    const popupBtn = document.getElementById("popupBtn");
+    const closePopup = document.getElementById("closePopup");
+    popupBtn.addEventListener("click", () => popup.classList.add("active"));
+    closePopup.addEventListener("click", () => popup.classList.remove("active"));
+    popup.addEventListener("click", (e) => { if (e.target === popup) popup.classList.remove("active"); });
+
+    const autoPopup = document.getElementById("autoPopup");
+    const closeAuto = document.getElementById("closeAuto");
+    window.addEventListener("load", () => { setTimeout(() => autoPopup.classList.add("active"), 600); });
+    closeAuto.addEventListener("click", () => autoPopup.classList.remove("active"));
+    autoPopup.addEventListener("click", (e) => { if (e.target === autoPopup) autoPopup.classList.remove("active"); });
+
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add("visible"); });
+    }, { threshold: 0.2 });
+    sections.forEach(sec => observer.observe(sec));
+
+    // 🔹 Hamburger menu toggle
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("nav-menu");
+    menuToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
     });
   </script>
 </body>
