@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TWNAS XXXV COOMING SOON</title>
 
-  <!-- Favicon (ikon tab browser) -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="logo.png" />
 
   <style>
@@ -61,7 +61,6 @@
 
     .logo img {
       width: 55px;
-      max-width: 100%;
       height: auto;
     }
 
@@ -83,7 +82,6 @@
       display: flex;
       align-items: center;
       gap: 35px;
-      transition: all 0.3s ease;
     }
 
     nav a {
@@ -114,26 +112,7 @@
       box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
     }
 
-    /* HAMBURGER MENU */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      width: 28px;
-      height: 25px;
-      cursor: pointer;
-      gap: 5px;
-      z-index: 1001;
-    }
-
-    .menu-toggle span {
-      background: white;
-      height: 3px;
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-
-    /* HERO */
+    /* HERO SECTION */
     .hero {
       height: 100vh;
       display: flex;
@@ -142,8 +121,23 @@
       justify-content: center;
       text-align: center;
       padding: 100px 20px 20px;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      position: relative;
       color: white;
+      background: url('background.png') center/cover no-repeat;
+      /* gambar hanya untuk layar awal */
+    }
+
+    /* Overlay gelap agar teks tetap jelas */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .hero h1, .hero p {
+      position: relative;
+      z-index: 1;
     }
 
     .hero h1 {
@@ -154,7 +148,7 @@
     }
 
     .hero p {
-      max-width: 600px;
+      max-width: 700px;
       font-size: 1.2em;
       opacity: 0.9;
       animation: fadeInUp 1s ease forwards;
@@ -169,9 +163,9 @@
       align-items: center;
       text-align: center;
       padding: 80px 20px;
-      transition: all 1s ease;
       opacity: 0;
       transform: translateY(50px);
+      transition: all 1s ease;
     }
 
     section.visible {
@@ -192,7 +186,6 @@
       opacity: 0.9;
     }
 
-    /* Background warna estetis */
     .about {
       background: linear-gradient(135deg, #ffffff, #e3f2fd);
       color: #1e3c72;
@@ -233,7 +226,6 @@
       box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
     }
 
-    /* Footer */
     footer {
       background: #1e3c72;
       color: white;
@@ -255,25 +247,14 @@
 
     /* RESPONSIVE */
     @media (max-width: 992px) {
-      header {
-        padding: 12px 30px;
-      }
-      nav {
-        gap: 20px;
-      }
-      .hero h1 {
-        font-size: 2.3em;
-      }
-      .hero p {
-        font-size: 1.1em;
-      }
+      header { padding: 12px 30px; }
+      nav { gap: 20px; }
+      .hero h1 { font-size: 2.3em; }
+      .hero p { font-size: 1.1em; }
     }
 
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex;
-      }
-
+      .menu-toggle { display: flex; }
       nav {
         position: fixed;
         top: 70px;
@@ -287,46 +268,15 @@
         text-align: left;
         transition: right 0.4s ease;
       }
-
-      nav.show {
-        right: 0;
-      }
-
-      nav a, .btn-registrasi {
-        color: white;
-        font-size: 1em;
-      }
-
-      .hero {
-        padding-top: 140px;
-      }
-
-      .hero h1 {
-        font-size: 2em;
-      }
-
-      .hero p {
-        font-size: 1em;
-        padding: 0 15px;
-      }
-
-      section {
-        padding: 60px 15px;
-      }
-
-      section h2 {
-        font-size: 1.6em;
-      }
-
-      .buttons {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
+      nav.show { right: 0; }
+      nav a, .btn-registrasi { color: white; font-size: 1em; }
+      .hero { padding-top: 140px; }
+      .hero h1 { font-size: 2em; }
+      .hero p { font-size: 1em; padding: 0 15px; }
+      section { padding: 60px 15px; }
+      section h2 { font-size: 1.6em; }
+      .buttons { flex-direction: column; width: 100%; }
+      .btn { width: 100%; text-align: center; }
     }
   </style>
 </head>
@@ -343,9 +293,7 @@
     </div>
 
     <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
 
     <nav id="nav-menu">
@@ -363,33 +311,27 @@
     <p>Website resmi acara Temu Wicara Nasional FKMTSI ke-35 menginspirasi kolaborasi, inovasi, dan kebersamaan. Website ini berisi seluruh informasi mulai dari buku panduan, cara registrasi, lokasi penjemputan, contact person dan banyak hal lainnya.</p>
   </div>
 
-  <!-- SECTION 1 -->
   <section class="about">
     <h2>✨ Tentang Kami</h2>
-    <p>Kami berkomitmen untuk menghadirkan wadah yang inspiratif bagi mahasiswa teknik sipil di seluruh Indonesia melalui diskusi, kolaborasi, dan inovasi berkelanjutan.</p>
+    <p>Kami berkomitmen untuk menghadirkan wadah inspiratif bagi mahasiswa teknik sipil di seluruh Indonesia.</p>
   </section>
 
-  <!-- SECTION 2 -->
   <section class="projects">
     <h2>🚀 Program & Kegiatan</h2>
-    <p>TWNAS XXXV menghadirkan beragam kegiatan menarik seperti seminar nasional, kunjungan lapangan, lomba inovasi, serta forum pertukaran gagasan antar wilayah FKMTSI.</p>
+    <p>TWNAS XXXV menghadirkan berbagai kegiatan menarik seperti seminar nasional, kunjungan lapangan, dan forum pertukaran gagasan antar wilayah.</p>
   </section>
 
-  <!-- SECTION 3 -->
   <section class="contact">
     <h2>📞 Contact Person</h2>
     <p>Hubungi tim kami untuk informasi lebih lanjut terkait akomodasi, transportasi, atau acara.</p>
     <div class="buttons">
-      <a href="https://wa.me/6282251520792?text=Halo%20saya%20ingin%20bertanya%20tentang%20akomodasi" class="btn" target="_blank">Akomodasi</a>
-      <a href="https://wa.me/6282251520792?text=Halo%20saya%20ingin%20bertanya%20tentang%20transportasi" class="btn" target="_blank">Transportasi</a>
-      <a href="https://wa.me/6282251520792?text=Halo%20saya%20ingin%20bertanya%20tentang%20acara" class="btn" target="_blank">Acara</a>
+      <a href="https://wa.me/6282251520792?text=Halo%20TWNAS%20Saya%20ingin%20bertanya%20tentang%20akomodasi" class="btn" target="_blank">Akomodasi</a>
+      <a href="https://wa.me/6282251520792?text=Halo%20TWNAS%20Saya%20ingin%20bertanya%20tentang%20transportasi" class="btn" target="_blank">Transportasi</a>
+      <a href="https://wa.me/6282251520792?text=Halo%20TWNAS%20Saya%20ingin%20bertanya%20tentang%20acara" class="btn" target="_blank">Acara</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2025 TWNAS XXXV | FKMTSI Indonesia. All Rights Reserved.
-  </footer>
+  <footer>© 2025 TWNAS XXXV | FKMTSI Indonesia. All Rights Reserved.</footer>
 
   <script>
     const sections = document.querySelectorAll("section");
