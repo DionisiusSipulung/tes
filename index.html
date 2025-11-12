@@ -10,11 +10,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -22,7 +18,7 @@
       overflow-x: hidden;
     }
 
-/* HEADER */
+    /* HEADER */
     header {
       position: fixed;
       top: 0;
@@ -147,7 +143,7 @@
       background: rgba(0, 0, 0, 0.6);
     }
 
-    .hero h1, .hero p {
+    .hero h1, .hero p, .hero h2 {
       position: relative;
       z-index: 1;
     }
@@ -158,9 +154,10 @@
       margin-bottom: 15px;
       animation: fadeInDown 1s ease forwards;
     }
-        .hero h2 {
-      font-size: 3em;
-      font-weight: 700;
+
+    .hero h2 {
+      font-size: 2em;
+      font-weight: 600;
       margin-bottom: 15px;
       animation: fadeInDown 1s ease forwards;
     }
@@ -172,7 +169,7 @@
       animation: fadeInUp 1s ease forwards;
     }
 
-    /* SECTION */
+    /* SECTION UMUM */
     section {
       min-height: 100vh;
       display: flex;
@@ -191,27 +188,33 @@
       transform: translateY(0);
     }
 
+    /* HALAMAN 2 (About) */
     .about {
       background: linear-gradient(135deg, #ffffff, #e3f2fd);
       color: #1e3c72;
     }
 
+    /* HALAMAN 3 (Info) — Sekarang putih juga */
     .twnas-info {
-      background: url('background.png') center/cover no-repeat fixed;
-      position: relative;
-      color: white;
+      background: linear-gradient(135deg, #ffffff, #f4f4f4);
+      color: #1e3c72;
     }
 
-    .twnas-info::before {
+    /* HALAMAN 4 (Closing) — sama seperti hero */
+    .closing {
+      background: url('background.png') center/cover no-repeat fixed;
+      color: white;
+      position: relative;
+    }
+
+    .closing::before {
       content: "";
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.6);
-      z-index: 0;
     }
 
-    .twnas-info h2,
-    .twnas-info p {
+    .closing h2, .closing p {
       position: relative;
       z-index: 1;
     }
@@ -303,6 +306,7 @@
       header { padding: 12px 30px; }
       .logo img { width: 70px; }
       .hero h1 { font-size: 2em; }
+      .hero h2 { font-size: 1.4em; }
       .hero p { font-size: 1em; }
 
       .menu-toggle { display: flex; }
@@ -317,12 +321,8 @@
         transform: translateY(-250%);
         transition: transform 0.3s ease;
       }
-      nav.active {
-        transform: translateY(0);
-      }
-      nav a {
-        color: white !important;
-      }
+      nav.active { transform: translateY(0); }
+      nav a { color: white !important; }
     }
   </style>
 </head>
@@ -336,7 +336,6 @@
       </div>
     </div>
 
-    <!-- 🔹 Tombol hamburger -->
     <div class="menu-toggle" id="menu-toggle">
       <span></span><span></span><span></span>
     </div>
@@ -344,8 +343,8 @@
     <nav id="nav-menu">
       <a href="#">Home</a>
       <a href="#">Tentang Kami</a>
-      <a href="#">Bob Membantu</a>
-      <a href="#">Wilayah X</a>
+      <a href="#">Informasi</a>
+      <a href="#">Kontak</a>
       <button class="btn-registrasi" id="popupBtn">Registrasi</button>
     </nav>
   </header>
@@ -366,6 +365,11 @@
     <p>Segala informasi terbaru mengenai TWNAS XXXV 2025 akan diumumkan di halaman ini. Tetap pantau ya!</p>
   </section>
 
+  <section class="closing">
+    <h2>Terima Kasih Telah Mengunjungi</h2>
+    <p>Sampai jumpa di TWNAS XXXV 2025 - Wilayah X!</p>
+  </section>
+
   <footer>© 2025 TWNAS XXXV | FKMTSI Indonesia. All Rights Reserved.</footer>
 
   <!-- POPUP -->
@@ -373,7 +377,7 @@
     <div class="popup-content">
       <span class="popup-close" id="closePopup">&times;</span>
       <h2>Registrasi Belum Dibuka</h2>
-      <p>Tunggu info selanjutnya dari panitia! -D</p>
+      <p>Tunggu info selanjutnya dari panitia!</p>
     </div>
   </div>
 
@@ -410,7 +414,6 @@
     }, { threshold: 0.2 });
     sections.forEach(sec => observer.observe(sec));
 
-    // 🔹 Hamburger menu toggle
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("nav-menu");
     menuToggle.addEventListener("click", () => {
@@ -419,3 +422,4 @@
   </script>
 </body>
 </html>
+
