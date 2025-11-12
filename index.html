@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TWNAS XXXV</title>
-
   <link rel="icon" type="image/png" href="logo.png" />
 
   <style>
@@ -35,9 +34,7 @@
       background: rgba(255,255,255,0.95);
       color: #111;
     }
-    header.scrolled a {
-      color: #111;
-    }
+    header.scrolled a { color: #111; }
 
     .logo {
       display: flex;
@@ -83,9 +80,7 @@
       transition: 0.3s;
     }
 
-    nav a:hover {
-      color: #ffb185;
-    }
+    nav a:hover { color: #ffb185; }
 
     .btn-registrasi {
       background: linear-gradient(135deg, #ff6b35, #ff934f);
@@ -118,9 +113,7 @@
       transition: 0.3s;
     }
 
-    header.scrolled .menu-toggle span {
-      background: #222;
-    }
+    header.scrolled .menu-toggle span { background: #222; }
 
     /* HERO */
     .hero {
@@ -169,7 +162,7 @@
       animation: fadeInUp 1s ease forwards;
     }
 
-    /* SECTION UMUM */
+    /* SECTION */
     section {
       min-height: 100vh;
       display: flex;
@@ -182,36 +175,31 @@
       transform: translateY(50px);
       transition: all 1s ease;
     }
+    section.visible { opacity: 1; transform: translateY(0); }
 
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* HALAMAN 2 (About) */
-    .about {
-      background: #ffffff;
+    /* Halaman 2 & 3 sama warna */
+    .about, .twnas-info {
+      background: linear-gradient(135deg, #ffffff, #e3f2fd);
       color: #1e3c72;
     }
 
-    /* HALAMAN 3 (Info) */
-    .twnas-info {
-      background: #ffffff;
-      color: #1e3c72;
-    }
-
-    /* HALAMAN 4 (Closing) — sama seperti hero */
+    /* HALAMAN 4 (Closing) — background tetap diam */
     .closing {
-      background: url('background.png') center/cover no-repeat fixed;
-      color: white;
       position: relative;
+      color: white;
+      background: url('background.png') center/cover no-repeat fixed;
+      background-attachment: fixed;
     }
 
     .closing::before {
       content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
+      position: fixed; /* ini penting agar lapisan tidak ikut scroll */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 0;
     }
 
     .closing h2, .closing p {
@@ -228,11 +216,11 @@
       letter-spacing: 0.5px;
     }
 
+    /* Animasi */
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -241,10 +229,8 @@
     /* POPUP */
     .popup {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.6);
       display: flex;
       align-items: center;
@@ -254,11 +240,7 @@
       transition: 0.4s ease;
       z-index: 9999;
     }
-
-    .popup.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .popup.active { opacity: 1; pointer-events: auto; }
 
     .popup-content {
       background: white;
@@ -276,30 +258,18 @@
       to { transform: scale(1); opacity: 1; }
     }
 
-    .popup-content h2 {
-      color: #1e3c72;
-      margin-bottom: 15px;
-    }
-
-    .popup-content p {
-      color: #333;
-      font-size: 1em;
-    }
+    .popup-content h2 { color: #1e3c72; margin-bottom: 15px; }
+    .popup-content p { color: #333; font-size: 1em; }
 
     .popup-close {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 10px; right: 15px;
       font-size: 1.5em;
       color: #666;
       cursor: pointer;
       transition: 0.3s;
     }
-
-    .popup-close:hover {
-      color: #ff6b35;
-      transform: scale(1.1);
-    }
+    .popup-close:hover { color: #ff6b35; transform: scale(1.1); }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
