@@ -2,10 +2,10 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Perbaikan viewport agar tidak auto-zoom -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  
   <title>TWNAS XXXV</title>
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="logo.png" />
 
   <style>
@@ -59,19 +59,20 @@
     }
 
     .logo img {
-      width: 90px;
+      width: 120px;
       height: auto;
+      transition: width 0.3s ease;
     }
 
     .logo-text h1 {
-      font-size: 1.3em;
+      font-size: 1.4em;
       font-weight: 700;
       color: #fff;
       transition: color 0.4s ease;
     }
 
     .logo-text p {
-      font-size: 0.85em;
+      font-size: 0.9em;
       color: #fff;
       opacity: 0.9;
       transition: color 0.4s ease;
@@ -199,7 +200,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6); /* efek gelap seperti hero */
+      background: rgba(0, 0, 0, 0.6);
       z-index: 0;
     }
 
@@ -291,15 +292,40 @@
       transform: scale(1.1);
     }
 
+    /* RESPONSIVE MOBILE */
     @media (max-width: 768px) {
-      header { padding: 12px 30px; }
-      .hero h1 { font-size: 2em; }
-      .hero p { font-size: 1em; }
+      header {
+        padding: 10px 25px;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .logo img {
+        width: 100px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      nav a {
+        font-size: 0.9em;
+      }
+
+      .hero h1 {
+        font-size: 2em;
+      }
+
+      .hero p {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
-<body>
 
+<body>
   <!-- HEADER -->
   <header id="header">
     <div class="logo">
@@ -337,15 +363,14 @@
     <p>Segala informasi terbaru mengenai TWNAS XXXV 2025 akan diumumkan di halaman ini. Tetap pantau ya!</p>
   </section>
 
-  <!-- FOOTER -->
   <footer>© 2025 TWNAS XXXV | FKMTSI Indonesia. All Rights Reserved.</footer>
 
-  <!-- POPUP MANUAL -->
+  <!-- POPUP -->
   <div class="popup" id="popup">
     <div class="popup-content">
       <span class="popup-close" id="closePopup">&times;</span>
       <h2>Registrasi Belum Dibuka</h2>
-      <p>Tunggu info selanjutnya dari panitia! -D</p>
+      <p>Tunggu info selanjutnya dari panitia!</p>
     </div>
   </div>
 
@@ -354,7 +379,7 @@
     <div class="popup-content">
       <span class="popup-close" id="closeAuto">&times;</span>
       <h2>Mohon Maaf!</h2>
-      <p>Website ini sedang dalam tahap pengembangan dan belum dapat digunakan. 🎉</p>
+      <p>Website ini sedang dalam tahap pengembangan dan belum dapat digunakan.-Dion </p>
     </div>
   </div>
 
@@ -364,7 +389,7 @@
       header.classList.toggle("scrolled", window.scrollY > 50);
     });
 
-    // POPUP MANUAL
+    // POPUP
     const popup = document.getElementById("popup");
     const popupBtn = document.getElementById("popupBtn");
     const closePopup = document.getElementById("closePopup");
@@ -375,7 +400,7 @@
       if (e.target === popup) popup.classList.remove("active");
     });
 
-    // POPUP OTOMATIS
+    // AUTO POPUP
     const autoPopup = document.getElementById("autoPopup");
     const closeAuto = document.getElementById("closeAuto");
 
@@ -390,7 +415,7 @@
       if (e.target === autoPopup) autoPopup.classList.remove("active");
     });
 
-    // Animasi scroll muncul
+    // Animasi scroll
     const sections = document.querySelectorAll("section");
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
