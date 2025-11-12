@@ -17,15 +17,10 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    body {
       font-family: 'Poppins', sans-serif;
       color: #333;
       overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: url('background.png') center/cover no-repeat fixed; /* background tetap */
     }
 
     /* HEADER */
@@ -49,7 +44,6 @@
     header.scrolled {
       background: rgba(255, 255, 255, 0.95);
       color: #222;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     header.scrolled nav a,
@@ -128,6 +122,7 @@
       padding: 100px 20px 20px;
       position: relative;
       color: white;
+      background: url('background.png') center/cover no-repeat fixed;
     }
 
     .hero::before {
@@ -135,7 +130,6 @@
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.6);
-      z-index: 0;
     }
 
     .hero h1, .hero p {
@@ -157,44 +151,62 @@
       animation: fadeInUp 1s ease forwards;
     }
 
-    /* HALAMAN PUTIH */
-    .about {
+    /* SECTION */
+    section {
       min-height: 100vh;
-      background: white;
-      color: #1e3c72;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 80px 20px;
-      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
     }
 
-    .about h2 {
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
       font-size: 2em;
       margin-bottom: 20px;
       font-weight: 700;
     }
 
-    .about p {
+    section p {
       max-width: 650px;
       font-size: 1.1em;
       line-height: 1.7;
       opacity: 0.9;
     }
 
-    /* HALAMAN KETIGA TRANSPARAN KEMBALI */
-    .transparent-section {
-      min-height: 100vh;
-      background: rgba(255, 255, 255, 0);
+    .about {
+      background: linear-gradient(135deg, #ffffff, #e3f2fd);
+      color: #1e3c72;
+    }
+
+    /* SECTION 3 – Background sama seperti hero */
+    .twnas-info {
+      background: url('background.png') center/cover no-repeat fixed;
+      position: relative;
       color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 80px 20px;
+    }
+
+    .twnas-info::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6); /* efek gelap seperti hero */
+      z-index: 0;
+    }
+
+    .twnas-info h2,
+    .twnas-info p {
+      position: relative;
+      z-index: 1;
     }
 
     footer {
@@ -216,7 +228,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* === POPUP === */
+    /* POPUP */
     .popup {
       position: fixed;
       top: 0;
@@ -313,16 +325,19 @@
     <p>Website resmi acara Temu Wicara Nasional FKMTSI ke-35 menginspirasi kolaborasi, inovasi, dan kebersamaan.</p>
   </div>
 
+  <!-- SECTION 2 -->
   <section class="about">
     <h2>✨ Tentang Kami</h2>
     <p>Kami berkomitmen menghadirkan wadah inspiratif bagi mahasiswa teknik sipil seluruh Indonesia.</p>
   </section>
 
-  <section class="transparent-section">
-    <h2>🌟 Kembali Transparan</h2>
-    <p>Bagian ini menampilkan kembali background tetap dari halaman utama.</p>
+  <!-- SECTION 3 -->
+  <section class="twnas-info">
+    <h2>📣 Informasi Kegiatan</h2>
+    <p>Segala informasi terbaru mengenai TWNAS XXXV 2025 akan diumumkan di halaman ini. Tetap pantau ya!</p>
   </section>
 
+  <!-- FOOTER -->
   <footer>© 2025 TWNAS XXXV | FKMTSI Indonesia. All Rights Reserved.</footer>
 
   <!-- POPUP MANUAL -->
@@ -330,7 +345,7 @@
     <div class="popup-content">
       <span class="popup-close" id="closePopup">&times;</span>
       <h2>Registrasi Belum Dibuka</h2>
-      <p>Tunggu info selanjutnya dari panitia!</p>
+      <p>Tunggu info selanjutnya dari panitia! -D</p>
     </div>
   </div>
 
@@ -339,7 +354,7 @@
     <div class="popup-content">
       <span class="popup-close" id="closeAuto">&times;</span>
       <h2>Mohon Maaf!</h2>
-      <p>Website ini sedang dalam tahap pengembangan dan belum dapat digunakan. </p>
+      <p>Website ini sedang dalam tahap pengembangan dan belum dapat digunakan. 🎉</p>
     </div>
   </div>
 
@@ -374,6 +389,16 @@
     autoPopup.addEventListener("click", (e) => {
       if (e.target === autoPopup) autoPopup.classList.remove("active");
     });
+
+    // Animasi scroll muncul
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(sec => observer.observe(sec));
   </script>
 </body>
 </html>
