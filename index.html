@@ -19,18 +19,20 @@
 
     body {
       font-family: 'Poppins', sans-serif;
+      background-color: #f9fafc;
       color: #333;
       overflow-x: hidden;
-      background-color: #f9fafc;
     }
 
-    /* ================= HEADER ================= */
+    /* HEADER */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: transparent;
+      background: rgba(255, 255, 255, 0);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       color: #fff;
       display: flex;
       align-items: center;
@@ -40,12 +42,9 @@
       transition: all 0.4s ease;
     }
 
-    /* Saat di-scroll */
     header.scrolled {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.9);
       color: #222;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      backdrop-filter: blur(10px);
     }
 
     header.scrolled nav a,
@@ -113,7 +112,7 @@
       box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
     }
 
-    /* ================= HERO SECTION ================= */
+    /* HERO SECTION */
     .hero {
       height: 100vh;
       display: flex;
@@ -131,7 +130,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(0, 0, 0, 0.6);
     }
 
     .hero h1, .hero p {
@@ -153,7 +152,7 @@
       animation: fadeInUp 1s ease forwards;
     }
 
-    /* ================= SECTION ================= */
+    /* SECTION BASE */
     section {
       min-height: 100vh;
       display: flex;
@@ -244,7 +243,70 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ================= RESPONSIVE ================= */
+    /* === POPUP === */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s ease;
+      z-index: 9999;
+    }
+
+    .popup.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .popup-content {
+      background: white;
+      border-radius: 15px;
+      padding: 30px 40px;
+      text-align: center;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: scaleIn 0.4s ease;
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .popup-content h2 {
+      color: #1e3c72;
+      margin-bottom: 15px;
+    }
+
+    .popup-content p {
+      color: #333;
+      font-size: 1em;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5em;
+      color: #666;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .popup-close:hover {
+      color: #ff6b35;
+      transform: scale(1.1);
+    }
+
+    /* RESPONSIVE */
     @media (max-width: 992px) {
       header { padding: 12px 30px; }
       nav { gap: 20px; }
@@ -253,22 +315,6 @@
     }
 
     @media (max-width: 768px) {
-      .menu-toggle { display: flex; }
-      nav {
-        position: fixed;
-        top: 70px;
-        right: -100%;
-        flex-direction: column;
-        background: rgba(30, 60, 114, 0.95);
-        width: 200px;
-        padding: 20px;
-        border-radius: 0 0 0 20px;
-        gap: 15px;
-        text-align: left;
-        transition: right 0.4s ease;
-      }
-      nav.show { right: 0; }
-      nav a, .btn-registrasi { color: white; font-size: 1em; }
       .hero { padding-top: 140px; }
       .hero h1 { font-size: 2em; }
       .hero p { font-size: 1em; padding: 0 15px; }
@@ -281,7 +327,7 @@
 </head>
 <body>
 
-  <!-- ================= HEADER ================= -->
+  <!-- HEADER -->
   <header id="header">
     <div class="logo">
       <img src="logo.png" alt="Logo TWNAS" />
@@ -291,70 +337,52 @@
       </div>
     </div>
 
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span><span></span><span></span>
-    </div>
-
     <nav id="nav-menu">
       <a href="#">Home</a>
       <a href="#">Tentang Kami</a>
       <a href="#">Bob Membantu</a>
       <a href="#">Wilayah X</a>
-      <button class="btn-registrasi">Registrasi</button>
+      <button class="btn-registrasi" id="popupBtn">Registrasi</button>
     </nav>
   </header>
 
-  <!-- ================= HERO ================= -->
+  <!-- HERO -->
   <div class="hero">
     <h1>TWNAS XXXV 2025</h1>
-    <p>Website resmi acara Temu Wicara Nasional FKMTSI ke-35 menginspirasi kolaborasi, inovasi, dan kebersamaan. Website ini berisi seluruh informasi mulai dari buku panduan, cara registrasi, lokasi penjemputan, contact person dan banyak hal lainnya.</p>
+    <p>Website resmi acara Temu Wicara Nasional FKMTSI ke-35 menginspirasi kolaborasi, inovasi, dan kebersamaan.</p>
   </div>
 
-  <!-- ================= SECTION ================= -->
   <section class="about">
     <h2>✨ Tentang Kami</h2>
-    <p>Kami berkomitmen untuk menghadirkan wadah inspiratif bagi mahasiswa teknik sipil di seluruh Indonesia.</p>
-  </section>
-
-  <section class="projects">
-    <h2>🚀 Program & Kegiatan</h2>
-    <p>TWNAS XXXV menghadirkan berbagai kegiatan menarik seperti seminar nasional, kunjungan lapangan, dan forum pertukaran gagasan antar wilayah.</p>
-  </section>
-
-  <section class="contact">
-    <h2>📞 Contact Person</h2>
-    <p>Hubungi tim kami untuk informasi lebih lanjut terkait akomodasi, transportasi, atau acara.</p>
-    <div class="buttons">
-      <a href="https://wa.me/6282251520792?text=Halo%20TWNAS%20Saya%20ingin%20bertanya%20tentang%20akomodasi" class="btn" target="_blank">Akomodasi</a>
-      <a href="https://wa.me/6282251520792?text=Halo%20TWNAS%20Saya%20ingin%20bertanya%20tentang%20transportasi" class="btn" target="_blank">Transportasi</a>
-      <a href="https://wa.me/6282251520792?text=Halo%20TWNAS%20Saya%20ingin%20bertanya%20tentang%20acara" class="btn" target="_blank">Acara</a>
-    </div>
+    <p>Kami berkomitmen menghadirkan wadah inspiratif bagi mahasiswa teknik sipil seluruh Indonesia.</p>
   </section>
 
   <footer>© 2025 TWNAS XXXV | FKMTSI Indonesia. All Rights Reserved.</footer>
 
-  <!-- ================= SCRIPT ================= -->
+  <!-- POPUP -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <span class="popup-close" id="closePopup">&times;</span>
+      <h2>Registrasi Belum Dibuka</h2>
+      <p>Website ini sedang dalam tahap pengembangan, harap bersabar! -D</p>
+    </div>
+  </div>
+
   <script>
-    const sections = document.querySelectorAll("section");
     const header = document.getElementById("header");
-    const toggle = document.getElementById("menu-toggle");
-    const nav = document.getElementById("nav-menu");
-
-    const revealOnScroll = () => {
-      const triggerBottom = window.innerHeight * 0.85;
-      sections.forEach(sec => {
-        const boxTop = sec.getBoundingClientRect().top;
-        if (boxTop < triggerBottom) sec.classList.add("visible");
-      });
+    window.addEventListener("scroll", () => {
       header.classList.toggle("scrolled", window.scrollY > 50);
-    };
+    });
 
-    window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll();
+    // POPUP
+    const popup = document.getElementById("popup");
+    const popupBtn = document.getElementById("popupBtn");
+    const closePopup = document.getElementById("closePopup");
 
-    toggle.addEventListener("click", () => {
-      nav.classList.toggle("show");
-      toggle.classList.toggle("active");
+    popupBtn.addEventListener("click", () => popup.classList.add("active"));
+    closePopup.addEventListener("click", () => popup.classList.remove("active"));
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) popup.classList.remove("active");
     });
   </script>
 </body>
